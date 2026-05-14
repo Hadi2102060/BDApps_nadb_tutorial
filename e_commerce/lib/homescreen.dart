@@ -54,6 +54,12 @@ class _HomescreenState extends State<Homescreen> {
     print(products);
   }
 
+  void deleteProduct(int index) {
+    setState(() {
+      products.removeAt(index);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -220,13 +226,35 @@ class _HomescreenState extends State<Homescreen> {
 
                               SizedBox(height: 6),
 
-                              Text(
-                                "৳ ${products[index]["price"] ?? 0}",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.green,
-                                ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "৳ ${products[index]["price"] ?? 0}",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.green,
+                                    ),
+                                  ),
+
+                                  ElevatedButton(
+                                    onPressed: () => deleteProduct(index),
+                                    child: Text("Delete"),
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.red,
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: 12,
+                                        vertical: 6,
+                                      ),
+                                      textStyle: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
